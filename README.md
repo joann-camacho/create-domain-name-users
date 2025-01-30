@@ -1,9 +1,6 @@
-<p align="center">
-<img src="https://i.imgur.com/Ua7udoS.png" alt="Traffic Examination"/>
-</p>
 
-<h1>Inspecting Traffic Between Azure Virtual Machines and Network Security Groups (NSGs) </h1>
-In this tutorial, we observe various network traffic to and from Azure Virtual Machines with Wireshark and experiment with Network Security Groups. <br />
+<h1> Create a Domain Name User in a Domain </h1>
+In this tutorial, we create a domain name user using Active Directory Users and Computers console. <br />
 
 
 <h2>Environments and Technologies Used</h2>

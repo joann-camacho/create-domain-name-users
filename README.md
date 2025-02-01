@@ -1,4 +1,3 @@
-
 <h1> Create a Domain Name User in a Domain </h1>
 In this tutorial, we create a domain name user using Active Directory Users and Computers console. <br />
 
@@ -7,18 +6,15 @@ In this tutorial, we create a domain name user using Active Directory Users and 
 
 - Microsoft Azure (Virtual Machines/Computer)
 - Remote Desktop
-- Various Command-Line Tools
-- Various Network Protocols (SSH, RDH, ICMP)
-- Wireshark (Protocol Analyzer)
 
 <h2>Operating Systems Used </h2>
 
-- Windows 10 (22H2)
-- Ubuntu Server 20.04
+- Windows 10 (22H2) ***Client-1***
+- Windows (Windows Server 2022 Datacenter Azure Edition) ***DC-1***
 
 <h2>High-Level Steps</h2>
 
- ***A- Prereq: Create a Windows VM and Ubuntu (Linux) VM. Then, remote login to Windows VM*** 
+
   
 - Step 1: Install [Wireshark](https://www.wireshark.org) in the Windows VM to observe Packet tracing.
 - Step 2: Attempt to ping Linux VM in Windows VM using Powershell. Observe the traffic in Wireshark

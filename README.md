@@ -14,7 +14,7 @@ In this tutorial, we create a domain name user using Active Directory Users and 
 
 <h2>High-Level Steps</h2>
 
-
+ ***Prereq: Create a Windows VM and Windows Server VM in Azure. Select the link to learn how to [create VM in Azure](https://github.com/joann-camacho/create-windows-virtual-machine).Remote login to Windows Server VM (DC-1) and install ADDS. Select the link to learn how to [install Active Directory]*** 
   
 - Step 1: Install [Wireshark](https://www.wireshark.org) in the Windows VM to observe Packet tracing.
 - Step 2: Attempt to ping Linux VM in Windows VM using Powershell. Observe the traffic in Wireshark

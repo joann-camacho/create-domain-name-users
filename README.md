@@ -14,23 +14,25 @@ In this tutorial, we create a domain name user using Active Directory Users and 
 
 <h2>High-Level Steps</h2>
 
- ***Prereq: Create a Windows VM and Windows Server VM in Azure. Select the link to learn how to [create VM in Azure](https://github.com/joann-camacho/create-windows-virtual-machine).Remote login to Windows Server VM (DC-1) and install ADDS. Select the link to learn how to [install Active Directory](https://github.com/joann-camacho/install-active-directory)*** 
+ ***A- Prereq: Create a Windows VM and Windows Server VM in Azure. Select the link to learn how to [create VM in Azure](https://github.com/joann-camacho/create-windows-virtual-machine).Remote login to Windows Server VM (DC-1) and install ADDS. Select the link to learn how to [install Active Directory](https://github.com/joann-camacho/install-active-directory)*** 
   
 - Step 1: Create Organization Units (OU) named: _EMPLOYEES, _ADMINS, and _CLIENTS in Active Directory Users and Computers (ADUS) 
 - Step 2: Create a new employee named “Jane Doe”. The username is: “jane_admin”. Add jane_admin to the “Domain Admins” Security Group.
 - Step 3: Log out / close the connection to DC-1 and log back in as “mydomain.com\jane_admin”.
 
- ***Join Client-1 to your domain (mydomain.com)***
+ ***B- Join Client-1 to your domain (mydomain.com)***
 
 - Step 1: Log in to Client-1 as the original local admin (labuser) and join it to the domain (computer will restart)
 - Step 2: Log in to the Domain Controller and verify Client-1 shows up in ADUC
 
 
-***C- SSH Network Protocol***
+***C- Setup Remote Desktop for non-administrative users on Client-1 and Create a bunch of additional users and attempt to log into client-1 with one of the users***
 
-- Step 1: Start the Wireshark analyzer, in your Windows VM, and filter for SSH traffic only
-- Step 2: From your Windows 10 VM, “SSH into” your Ubuntu Virtual Machine (via its private IP address)
-- Step 3: 
+- Step 1: Log into **Client-1** as mydomain.com\jane_admin. Open system properties and set up Remote Desktop configuration to allow “domain users” access to the remote desktop.
+- Step 2: Log in to **DC-1** as jane_admin.
+- Step 3: Open PowerShell_ISE as an administrator. Create a new File and paste the contents of the [script](https://github.com/joshmadakor1/AD_PS/blob/master/Generate-Names-Create-Users.ps1) into it. Run the script and observe the accounts being created.
+- Step 4: Open ADUC and observe the accounts in the appropriate OU　(_EMPLOYEES). Attempt to log into Client-1 with one of the accounts (take note of the password in the script)
+
 
 
 <h2>Actions and Observations</h2>

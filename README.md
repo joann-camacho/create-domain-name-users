@@ -14,19 +14,21 @@ In this tutorial, we create a domain name user using Active Directory Users and 
 
 <h2>High-Level Steps</h2>
 
- ***A- Prereq: Create a Windows VM and Windows Server VM in Azure. Select the link to learn how to [create VM in Azure](https://github.com/joann-camacho/create-windows-virtual-machine).Remote login to Windows Server VM (DC-1) and install ADDS. Select the link to learn how to [install Active Directory](https://github.com/joann-camacho/install-active-directory)*** 
+ ***- Prereq: Create a Windows VM and Windows Server VM in Azure. Select the link to learn how to [create VM in Azure](https://github.com/joann-camacho/create-windows-virtual-machine). Remote login to Windows Server VM (DC-1) and install ADDS. Select the link to learn how to [install Active Directory](https://github.com/joann-camacho/install-active-directory)*** 
+
+***Create a Domain Admin user within the domain***
   
 - Step 1: Create Organization Units (OU) named: _EMPLOYEES, _ADMINS, and _CLIENTS in Active Directory Users and Computers (ADUS) 
 - Step 2: Create a new employee named “Jane Doe”. The username is: “jane_admin”. Add jane_admin to the “Domain Admins” Security Group.
 - Step 3: Log out / close the connection to DC-1 and log back in as “mydomain.com\jane_admin”.
 
- ***B- Join Client-1 to your domain (mydomain.com)***
+ ***Join Client-1 to your domain (mydomain.com)***
 
 - Step 1: Log in to Client-1 as the original local admin (labuser) and join it to the domain (computer will restart)
 - Step 2: Log in to the Domain Controller and verify Client-1 shows up in ADUC
 
 
-***C- Setup Remote Desktop for non-administrative users on Client-1 and Create a bunch of additional users and attempt to log into client-1 with one of the users***
+***Setup Remote Desktop for non-administrative users on Client-1 and Create a bunch of additional users and attempt to log into client-1 with one of the users***
 
 - Step 1: Log into **Client-1** as mydomain.com\jane_admin. Open system properties and set up Remote Desktop configuration to allow “domain users” access to the remote desktop.
 - Step 2: Log in to **DC-1** as jane_admin.
@@ -38,27 +40,50 @@ In this tutorial, we create a domain name user using Active Directory Users and 
 <h2>Actions and Observations</h2>
 
 <p>
-Step 1: In the Windows VM, use the search engine, and visit [Wireshark](https://www.wireshark.org). Go to Downloads, and install Windows x64 Installer.
-</p>
-<p>
+Step 1: Connect to the Domain Controller (DC-1). Select the Windows (Start) icon and select Windows Administrative Tools > Active Directory Users and Computers.
   
-![image](https://github.com/user-attachments/assets/f004b1cf-c6b4-45ab-8775-9b223a2d65e0)
+ ![image](https://github.com/user-attachments/assets/5b058ff6-a43e-4b7f-8e7c-a9b0cb30442b)
+
+</p>
+ Select and right-click on mydomain.com forest. Select 'New'. Select 'Organization Units' (OU). Create and name 3 different OUs: _EMPLOYEES, _ADMINS, and _CLIENTS
+ 
+![image](https://github.com/user-attachments/assets/648b0515-1d94-4b4d-8c5e-b86a01e63f9d)
 </p>
 
-(After installing Wireshark licensing terms) Open Wireshark. Double-click on 'Ethernet' to view IP traffic. This traffic is the IP packets reciprocating in the background while using the computer. 
-<p>
-  
-![image](https://github.com/user-attachments/assets/8a7ba9ea-4008-4fce-9bd1-5a96153ddd3c)  
+![image](https://github.com/user-attachments/assets/cdce1236-72b3-42d5-b863-28e331c68e89)
 </p>
+
+![image](https://github.com/user-attachments/assets/2fd5be47-74f6-4367-90a2-c926e7d009b1)
+
+</p>
+
 <br />
 
 <p>
-Step 2: Obtain Ubuntu (linux) Private IP address from Azure. In Wireshark's search window, Type ICMP. Also, open Powershell and ping 10.1.0.5 (Ubuntu's Private IP address). Observe the connectivity between two separate operating systems, when inspecting this traffic notice the four requests and replies in the Powershell command and there are 8 requests and replies in the Wireshark analyzer. This is important to note when inspecting data packet units and sourcing their incoming and outgoing traffic.
+Step 2: Right-click on the 'Users' file. Select 'New'. Select 'User'.
+
+![image](https://github.com/user-attachments/assets/fac8f07d-dffd-4b93-821e-63cc7d85bd6f)
+
 </p>
-<p>
+
+Create a new employee named “Jane Doe”. The username is: “jane_admin”. 
   
-![image](https://github.com/user-attachments/assets/6c90b2b5-70a6-4033-9307-de5dcaffcd57)
+![image](https://github.com/user-attachments/assets/025091aa-c176-4690-befc-bc67311c8c52)
+
+![image](https://github.com/user-attachments/assets/9ecd1a61-3da8-4fec-9b08-96d05e54b145)
+
+*Notice* when creating a new user **always** select the **'user must change password at next logon'** for security purposes. However, in this tutorial, I will not for simplicity. Select 'Next' and 'Finish'. Observe that the user was created in the file.
 </p>
+
+![image](https://github.com/user-attachments/assets/c18c157f-5ad4-437c-831a-fb6e5a8bae97)
+
+</p>
+
+Select Jane Doe's file. Select the 'Member of' tab. Select the 'Add' button. Type: Domain Admin, and select 'Check Names'. Once found in the domain- add jane_admin to the “Domain Admins” Security Group. Select 'Apply' and 'Ok'.
+
+![image](https://github.com/user-attachments/assets/42228f98-57da-496d-b892-2ca978c132d5)
+![image](https://github.com/user-attachments/assets/faaed4bb-6cba-4034-88df-e6afbc38682f)
+
 <br />
 
 <p>

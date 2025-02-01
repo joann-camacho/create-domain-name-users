@@ -14,19 +14,17 @@ In this tutorial, we create a domain name user using Active Directory Users and 
 
 <h2>High-Level Steps</h2>
 
- ***Prereq: Create a Windows VM and Windows Server VM in Azure. Select the link to learn how to [create VM in Azure](https://github.com/joann-camacho/create-windows-virtual-machine).Remote login to Windows Server VM (DC-1) and install ADDS. Select the link to learn how to [install Active Directory]*** 
+ ***Prereq: Create a Windows VM and Windows Server VM in Azure. Select the link to learn how to [create VM in Azure](https://github.com/joann-camacho/create-windows-virtual-machine).Remote login to Windows Server VM (DC-1) and install ADDS. Select the link to learn how to [install Active Directory](https://github.com/joann-camacho/install-active-directory)*** 
   
-- Step 1: Install [Wireshark](https://www.wireshark.org) in the Windows VM to observe Packet tracing.
-- Step 2: Attempt to ping Linux VM in Windows VM using Powershell. Observe the traffic in Wireshark
-- Step 3: Verify the Windows VM MAC Address is the same.
+- Step 1: Create Organization Units (OU) named: _EMPLOYEES, _ADMINS, and _CLIENTS in Active Directory Users and Computers (ADUS) 
+- Step 2: Create a new employee named “Jane Doe”. The username is: “jane_admin”. Add jane_admin to the “Domain Admins” Security Group.
+- Step 3: Log out / close the connection to DC-1 and log back in as “mydomain.com\jane_admin”.
 
- ***B- Configuring A Firewall Network Security Group***
+ ***Join Client-1 to your domain (mydomain.com)***
 
-- Step 1: Initiate a perpetual/non-stop ping from your Windows 10 VM to your Ubuntu VM
-- Step 2: Open the Network Security Group your Ubuntu VM is using and disable incoming (inbound) ICMP traffic
-- Step 3: Back in the Windows 10 VM, observe the ICMP traffic in WireShark and the command line Ping activity
-- Step 4: Re-enable ICMP traffic for the Network Security Group your Ubuntu VM
-- Step 5: Back in the Windows 10 VM, observe the ICMP traffic in WireShark and the command line Ping activity (should start working). After, stop the ping activity.
+- Step 1: Log in to Client-1 as the original local admin (labuser) and join it to the domain (computer will restart)
+- Step 2: Log in to the Domain Controller and verify Client-1 shows up in ADUC
+
 
 ***C- SSH Network Protocol***
 

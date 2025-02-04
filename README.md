@@ -66,7 +66,7 @@ Step 2: Right-click on the 'Users' file. Select 'New'. Select 'User'.
 
 </p>
 
-Create a new employee named “Jane Doe”. The username is: “jane_admin”. 
+Create a new employee named “Jane Doe”. The username is: “jane_admin”. Select 'Next'.
   
 ![image](https://github.com/user-attachments/assets/025091aa-c176-4690-befc-bc67311c8c52)
 
@@ -87,47 +87,55 @@ Select Jane Doe's file. Select the 'Member of' tab. Select the 'Add' button. Typ
 <br />
 
 <p>
-Step 3: In Wireshark, expand 'Ethernet II,Src' (Level 2 of the OSI model), and notice the MAC address given by Azure software. In Powershell type: 'ipconfig /all' to verify Windows VM MAC address are the same. This is important to analyze the source and destination MAC address it belongs to, which in this case Windows is the source.
+Step 3: Log out / close the connection to DC-1 and log back in as “mydomain.com\jane_admin”.
+  
 </p>
 <p>
   
-![image](https://github.com/user-attachments/assets/e2fee6ee-7a54-4b28-ab0e-cfce5d2f8471)
+![image](https://github.com/user-attachments/assets/fc61b3dc-49be-4a86-aba4-cc0dba7f05c1)
+  
+![image](https://github.com/user-attachments/assets/0b09322a-d4ab-43a0-b4c1-ab204156f4fb)
   
 </p>
 <br />
 
-**Configuring Firewall (NSG)**
+ ***Join Client-1 to your domain (mydomain.com)***
 
  <p>
-Step 1: (Continue on your Windows VM) In the Powershell command line, Type 'ping 10.1.0.5 -t'. To initiate a non-stop Ubuntu VM ping. Observe that the ping is perpetual or non-stop and you can also see in Wireshark the data is non-stop as well.
-</p>
+Step 1: Log in to Client-1 as the original local admin (labuser) 
 <p>
   
-![image](https://github.com/user-attachments/assets/0fc2f695-d26e-4626-b6c6-5bd2c6ad63b4)
+![image](https://github.com/user-attachments/assets/d5b1b849-da97-4347-9c6b-246288338ee2)
+
+<p>
+Right-click on the Windows start menu and select 'System'. Select 'Rename this PC (advanced)'. 
+<p>
+
+![image](https://github.com/user-attachments/assets/9db5db32-bda3-4170-80df-f1555dfc0cf1)
+<p>
+'To rename this computer or change its domain', select 'Add'. Click on 'Member of- Domain', and Type: mydomain.com. select 'Ok'. 
 </p>
 
-Step 2: In Azure select your Ubuntu VM. In the Overview section > Networking > Network Settings > Scroll down and Select: ubuntu-vm-linux-nsg.
+![image](https://github.com/user-attachments/assets/2fd32726-44a8-46c8-b2a1-f311bbb6389d)
+
+Enter username: mydomain.com\jane_doe (admin) and the password. Select 'Enter'. Then restart Cleint-1. 
+<p>
+
+ ![image](https://github.com/user-attachments/assets/10ca013c-d4ac-459f-b479-5c74c7dcc8e4)
+ 
+</p>
+</p>
+
+Step 2: Log in to the Domain Controller with Jane Doe's credentials (admin).
+
 ![image](https://github.com/user-attachments/assets/130f4403-ea7c-4f00-bc51-ccf736c7ec9c)
+ <p>
+   When logged on. Go to Active Directory Users and Computers. Select the domain name> OU: computers. Observe that Client-1 is in the file.
+ </p>
+ 
+![image](https://github.com/user-attachments/assets/71747a57-25cc-485a-9884-fe6db733e827)
 
-  Select Settings on the left-hand side and select 'Inbound security rule'. I am attempting to set a rule to disable incoming (inbound) ICMP traffic. Select 'Add'. In 'Destination port range' change to an asterisk (*), since ICMP does not have a port number, the asterisk defaults to all ports. In 'Protocol' select ICMPv4. In 'Action' select Deny. In 'Priority' type: 290. This means that it will go before any other rules set for a higher number (for example SSH at 300).
-<p>
-  
-![image](https://github.com/user-attachments/assets/dd05ff2e-0b6c-4a63-bb4a-11ad98cb8a5e)
-
-![image](https://github.com/user-attachments/assets/76cb82c8-8e22-4fac-b0c1-92366be3905e)
-
-notice back in the Windows VM - the ongoing ping timed out in Powershell AND only Request is shown in Wireshark. This means the NSG rule worked!
-
-![image](https://github.com/user-attachments/assets/dc73c60a-bb90-4176-984d-63c5a6de4714)
-</p>
-
-Delete the NSG rule in Azure and notice the ongoing ping is now functioning again. 
-
-![image](https://github.com/user-attachments/assets/603f320e-efa7-4298-a090-aad7eec8e56f)
-
-![image](https://github.com/user-attachments/assets/e3cb8464-a5b8-43d8-b8e4-537b78754ae7)
-
-
+Select Client-1 file and drag and drop into the _CLIENTS organization unit.
 </p>
 <br />     
       

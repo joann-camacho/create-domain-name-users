@@ -163,35 +163,31 @@ Under 'User accounts> Select users that can remotely access this PC'. Select 'Ad
 <br />
 
 <p>
-Step 2: Log in to **DC-1** as jane_doe (admin).Open PowerShell_ise as an administrator and Create a new File and paste the contents of the [script](https://github.com/joshmadakor1/AD_PS/blob/master/Generate-Names-Create-Users.ps1) into it
+
+Step 2: Log in to **DC-1** as jane_doe (admin). Open Microsoft Edge and copy and paste the Script's link address. Open PowerShell_ise **as an administrator**- Create a new File, name it 'Users' save it on your desktop. Click on the 'copy raw file' which is the image of two boxes on the top right side of the file. Paste the contents of the [script](https://github.com/joshmadakor1/AD_PS/blob/master/Generate-Names-Create-Users.ps1) into the Powershell_ISE script. 
 
 </p>
 <p>
  
-![image](https://github.com/user-attachments/assets/cffd25bf-8678-4188-b3ac-7b68ad2be7bb)
+![image](https://github.com/user-attachments/assets/9f7c0a54-8a30-4205-9349-6e073bc4730d)
   
 </p>
+Step 3: 'Run' the script. Observe that there will be a running list of user names in blue. the password to all users is Password1 -per script.
+
+![image](https://github.com/user-attachments/assets/336ebd2e-596c-4537-bbc4-67306ea16954)
+
 
 <br />
 
-Step 3: Log in to **DC-1** as jane_doe (admin).Open PowerShell_ise as an administrator and Create a new File and paste the contents of the [script](https://github.com/joshmadakor1/AD_PS/blob/master/Generate-Names-Create-Users.ps1) into it
-
-</p>
+Step 4: Open ADUC and observe the accounts in the appropriate OU　(_EMPLOYEES). 
 <p>
  
-![image](https://github.com/user-attachments/assets/cffd25bf-8678-4188-b3ac-7b68ad2be7bb)
-  
+![image](https://github.com/user-attachments/assets/24d032c9-2189-451f-9d18-ef3b49efa317)
+
+
+Attempt to log into Client-1 with one of the accounts (take note of the password in the script)
 </p>
 
-<br />
-
-Step 4: Log in to **DC-1** as jane_doe (admin).Open PowerShell_ise as an administrator and Create a new File and paste the contents of the [script](https://github.com/joshmadakor1/AD_PS/blob/master/Generate-Names-Create-Users.ps1) into it
-
-</p>
-<p>
- 
-![image](https://github.com/user-attachments/assets/cffd25bf-8678-4188-b3ac-7b68ad2be7bb)
-  
-</p>
+![image](https://github.com/user-attachments/assets/c6ff20a2-1453-47d6-970f-b6004174c098)
 
 <br />

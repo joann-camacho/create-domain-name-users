@@ -19,8 +19,8 @@ In this tutorial, we create a domain name user using Active Directory Users and 
 ***Create a Domain Admin user within the domain***
   
 - Step 1: Create Organization Units (OU) named: _EMPLOYEES, _ADMINS, and _CLIENTS in Active Directory Users and Computers (ADUS) 
-- Step 2: Create a new employee named “Jane Doe”. The username is: “jane_admin”. Add jane_admin to the “Domain Admins” Security Group.
-- Step 3: Log out / close the connection to DC-1 and log back in as “mydomain.com\jane_admin”.
+- Step 2: Create a new employee named “Jane Doe” (administrator). The username is: “jane_doe”. Add jane_doe to the “Domain Admins” Security Group.
+- Step 3: Log out / close the connection to DC-1 and log back in as “mydomain.com\jane_doe”.
 
  ***Join Client-1 to your domain (mydomain.com)***
 
@@ -30,9 +30,9 @@ In this tutorial, we create a domain name user using Active Directory Users and 
 
 ***Setup Remote Desktop for non-administrative users on Client-1 and Create a bunch of additional users and attempt to log into client-1 with one of the users***
 
-- Step 1: Log into **Client-1** as mydomain.com\jane_admin. Open system properties and set up Remote Desktop configuration to allow “domain users” access to the remote desktop.
-- Step 2: Log in to **DC-1** as jane_admin.
-- Step 3: Open PowerShell_ISE as an administrator. Create a new File and paste the contents of the [script](https://github.com/joshmadakor1/AD_PS/blob/master/Generate-Names-Create-Users.ps1) into it. Run the script and observe the accounts being created.
+- Step 1: Log into **Client-1** as mydomain.com\jane_doe. Open system properties and set up Remote Desktop configuration to allow “domain users” access to the remote desktop.
+- Step 2: Log into **DC-1** as jane_doe (admin). Open PowerShell_ISE as an administrator create a new File and paste the contents of the [script](https://github.com/joshmadakor1/AD_PS/blob/master/Generate-Names-Create-Users.ps1) into it.
+- Step 3: Run the script and observe the accounts being created.
 - Step 4: Open ADUC and observe the accounts in the appropriate OU　(_EMPLOYEES). Attempt to log into Client-1 with one of the accounts (take note of the password in the script)
 
 
@@ -136,43 +136,62 @@ Step 2: Log in to the Domain Controller with Jane Doe's credentials (admin).
 ![image](https://github.com/user-attachments/assets/71747a57-25cc-485a-9884-fe6db733e827)
 
 Select Client-1 file and drag and drop into the _CLIENTS organization unit.
+
+![image](https://github.com/user-attachments/assets/208d757b-4925-4890-b338-df7544a5874c)
+
 </p>
 <br />     
       
-***C- SSH Network Protocol***
+***Setup Remote Desktop for non-administrative users on Client-1 and Create a bunch of additional users and attempt to log into client-1 with one of the users***
 
 <p>
-Step 1: In the Windows VM, start a packet capture using  [Wireshark](https://www.wireshark.org). Use the filter search and type: SSH.
-</p>
-<p>
- 
-![image](https://github.com/user-attachments/assets/723c962a-ae7d-4f8e-b7bc-865d9c3bfc83)  
-</p>
+Step 1: Log into Client-1 as mydomain.com\jane_admin. Right-click on Windows icon at the bottom left and Open 'system'. Click 'Remote Desktop'.
 
-(After installing Wireshark licensing terms) Open Wireshark. Double-click on 'Ethernet' to view IP traffic. This traffic is the IP packets reciprocating in the background while using the computer. 
+![image](https://github.com/user-attachments/assets/c003a532-ec78-4965-aeba-c7bcac0d6ce3)
+
 <p>
   
-![image](https://github.com/user-attachments/assets/8a7ba9ea-4008-4fce-9bd1-5a96153ddd3c)  
+Under 'User accounts> Select users that can remotely access this PC'. Select 'Add'. Type: Domain Users' Select 'Check Names'. Select 'Ok'. 
+(You can now log into Client-1 as a normal, non-administrative user now)
+
+![image](https://github.com/user-attachments/assets/bb3da690-1e0a-443b-9eb7-53b6c6413191)
+![image](https://github.com/user-attachments/assets/fc4fa469-e684-470a-bf27-f1fb4e24b654)
+
 </p>
+<p>
+
 <br />
 
 <p>
-Step 2: In Powershell "SSH into" the Linux VM by typing: ssh labuser1@<private IP address>. (the private IP address must be the Linux VM, which is 10.1.0.5). Notice that communication (secured traffic) is observed on the Wireshark analyzer. Enter the Linux VM password you created. (When typing the password, no letter will appear for security reasons.) You will see that more traffic was analyzed in Wireshark. Once the password is validated and confirmed notice the green hostname is now the Linux VM name.
+Step 2: Log in to **DC-1** as jane_doe (admin).Open PowerShell_ise as an administrator and Create a new File and paste the contents of the [script](https://github.com/joshmadakor1/AD_PS/blob/master/Generate-Names-Create-Users.ps1) into it
+
 </p>
 <p>
  
 ![image](https://github.com/user-attachments/assets/cffd25bf-8678-4188-b3ac-7b68ad2be7bb)
   
 </p>
+
 <br />
 
-<p>
-Step 3: Type: 'hostname', to verify the server. Type 'id', to verify the user name.  Type 'exit' to exit out of the Linus VM server. 
+Step 3: Log in to **DC-1** as jane_doe (admin).Open PowerShell_ise as an administrator and Create a new File and paste the contents of the [script](https://github.com/joshmadakor1/AD_PS/blob/master/Generate-Names-Create-Users.ps1) into it
+
 </p>
 <p>
-  
-![image](https://github.com/user-attachments/assets/2e23ebd1-0da0-410c-accd-51af635320d4)
+ 
+![image](https://github.com/user-attachments/assets/cffd25bf-8678-4188-b3ac-7b68ad2be7bb)
   
 </p>
+
 <br />
 
+Step 4: Log in to **DC-1** as jane_doe (admin).Open PowerShell_ise as an administrator and Create a new File and paste the contents of the [script](https://github.com/joshmadakor1/AD_PS/blob/master/Generate-Names-Create-Users.ps1) into it
+
+</p>
+<p>
+ 
+![image](https://github.com/user-attachments/assets/cffd25bf-8678-4188-b3ac-7b68ad2be7bb)
+  
+</p>
+
+<br />
